@@ -12,6 +12,7 @@ require_once "../auth/config.php";
 // Include the sample job data
 require_once "configJob.php"; // Contains the $sampleJobs array
 
+
 // Ensure the job_listings table exists (optional, but good practice)
 $sql = "CREATE TABLE IF NOT EXISTS job_listings (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
@@ -50,8 +51,25 @@ if ($stmt === false) {
 $insertedCount = 0;
 $skippedCount = 0;
 
+// Get available HR user IDs
+$sql = "SELECT id FROM users WHERE role = 'hr'";
+$result = $conn->query($sql);
+$hrUserIds = [];
+while ($row = $result->fetch_assoc()) {
+    $hrUserIds[] = $row['id'];
+}
+
+if (empty($hrUserIds)) {
+    die("No HR users found in the database. Please run populate_users.php first.\n");
+}
+
 // Loop through the sample jobs and insert them
 foreach ($sampleJobs as $job) {
+    // Assign a random HR user ID from the available ones
+    $randomUserIndex = array_rand($hrUserIds);
+    $userId = $hrUserIds[$randomUserIndex];
+
+
     // Basic check to avoid inserting duplicates based on title and company (optional)
     $checkSql = "SELECT id FROM job_listings WHERE title = ? AND company = ? LIMIT 1";
     $checkStmt = $conn->prepare($checkSql);
@@ -73,7 +91,6 @@ foreach ($sampleJobs as $job) {
 
     // Bind parameters
     // Ensure all keys exist, provide defaults if necessary
-    $userId = $job['user_id'] ?? 1; // Default to user 1 if not set
     $title = $job['title'] ?? 'N/A';
     $company = $job['company'] ?? 'N/A';
     $logo = $job['logo'] ?? null;
