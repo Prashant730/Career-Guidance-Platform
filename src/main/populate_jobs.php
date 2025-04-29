@@ -51,13 +51,6 @@ if ($stmt === false) {
 $insertedCount = 0;
 $skippedCount = 0;
 
-// Get available HR user IDs
-$sql = "SELECT id FROM users WHERE role = 'hr'";
-$result = $conn->query($sql);
-$hrUserIds = [];
-while ($row = $result->fetch_assoc()) {
-    $hrUserIds[] = $row['id'];
-}
 
 if (empty($hrUserIds)) {
     die("No HR users found in the database. Please run populate_users.php first.\n");
