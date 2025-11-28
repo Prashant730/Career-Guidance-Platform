@@ -1,21 +1,19 @@
 {
   "version": 2,
   "outputDirectory": ".",
-  "buildCommand": "",
-  "installCommand": "",
-  "framework": null,
-  "routes": [
+  "functions": {
+    "api/**/*.php": {
+      "runtime": "vercel-php@0.7.1"
+    }
+  },
+  "rewrites": [
     {
-      "src": "/src/(.*)",
-      "dest": "/src/$1"
+      "source": "/src/(.*)",
+      "destination": "/api/src/$1"
     },
     {
-      "src": "/(.*\\.php)",
-      "dest": "/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.php"
+      "source": "/(.*)",
+      "destination": "/api/index.php"
     }
   ]
 }
