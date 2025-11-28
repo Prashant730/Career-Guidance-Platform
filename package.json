@@ -1,0 +1,12 @@
+{
+  "name": "career-guidance-platform",
+  "version": "1.0.0",
+  "description": "Career Guidance Platform",
+  "scripts": {
+    "build": "echo 'No build step required for PHP'"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
+

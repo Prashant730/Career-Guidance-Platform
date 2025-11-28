@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "outputDirectory": ".",
+  "buildCommand": "",
+  "installCommand": "",
+  "framework": null,
+  "routes": [
+    {
+      "src": "/src/(.*)",
+      "dest": "/src/$1"
+    },
+    {
+      "src": "/(.*\\.php)",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.php"
+    }
+  ]
+}
+
