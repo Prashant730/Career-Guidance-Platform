@@ -20,6 +20,24 @@ $fullname = $_SESSION["fullname"];
 $email = $_SESSION["email"];
 $user_role = $_SESSION["role"] ?? 'user'; // Default to 'user' if role is not set
 
+// Verify user still exists in database
+$verify_sql = "SELECT id FROM users WHERE id = ?";
+if ($verify_stmt = $conn->prepare($verify_sql)) {
+    $verify_stmt->bind_param("i", $user_id);
+    $verify_stmt->execute();
+    $verify_stmt->store_result();
+
+    // If user doesn't exist in database, logout
+    if ($verify_stmt->num_rows == 0) {
+        $verify_stmt->close();
+        session_unset();
+        session_destroy();
+        header("location: ../auth/login.php");
+        exit;
+    }
+    $verify_stmt->close();
+}
+
 // Handle clearing assessment results
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['clear_assessment'])) {
     unset($_SESSION['assessment_results']);

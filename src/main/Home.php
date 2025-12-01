@@ -20,6 +20,24 @@ $user_id = $_SESSION["id"];
 $fullname = $_SESSION["fullname"];
 $email = $_SESSION["email"];
 
+// Verify user still exists in database
+$verify_sql = "SELECT id FROM users WHERE id = ?";
+if ($verify_stmt = $conn->prepare($verify_sql)) {
+    $verify_stmt->bind_param("i", $user_id);
+    $verify_stmt->execute();
+    $verify_stmt->store_result();
+
+    // If user doesn't exist in database, logout
+    if ($verify_stmt->num_rows == 0) {
+        $verify_stmt->close();
+        session_unset();
+        session_destroy();
+        header("location: ../auth/login.php");
+        exit;
+    }
+    $verify_stmt->close();
+}
+
 // --- Ensure career_assessments table exists ---
 // Moved this block outside the AJAX handler to run on every page load
 try {
