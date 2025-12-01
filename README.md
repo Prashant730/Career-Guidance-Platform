@@ -1,59 +1,68 @@
-# CareerCompass - Career Development Platform
+# 🧭 CareerCompass - Career Development Platform
 
-## Project Overview
+A comprehensive career development platform designed to help users navigate their professional journey. Features AI-powered career assessments, personalized roadmap generation, job listings with skill matching, and role-based access control.
 
-CareerCompass is a comprehensive career development platform designed to help users navigate their professional journey. The platform offers career assessment tools, personalized roadmap generation, job listings with skill matching, application tracking, and role-based features in one integrated solution.
+## ✨ Features
 
-## Features
+### For Job Seekers
 
-### User Authentication
+- 📝 Interactive career assessment questionnaire
+- 🤖 AI-powered career recommendations using Google Gemini
+- 🗺️ Personalized learning roadmap generation
+- 💼 Browse job listings with skill-based matching
+- 🔖 Save and bookmark jobs for later
+- 📄 Apply to jobs with resume upload
+- 📊 Track application history
 
-- Secure signup and login system
-- Password hashing for security
-- Session management
-- Role-based access (User, HR, Admin)
+### For HR/Recruiters
 
-### Career Assessment (`Home.php`)
+- ➕ Post new job listings
+- 📈 Track applicants and manage listings
+- 🏷️ Add skill requirements to jobs
+- ⏰ Set job expiration dates
+- 👥 View candidate applications
 
-- Interactive questionnaire to identify career interests and strengths
-- AI-powered analysis of responses using Google Gemini
-- Personalized career recommendations and skill identification
-- Save and review past assessment history
+### For Admins
 
-### AI Roadmap Generator (`AiRoadmap.php`)
+- 👤 User management and role assignment
+- 🔐 Platform-wide access control
+- 📊 Overview of all job listings
+- ⚙️ System configuration
 
-- Create customized learning and career development roadmaps using AI
-- Tailored to user's goals, current skills, interests, and timeframe
-- Step-by-step guidance with resource recommendations
-- Save, view history, and download roadmaps for future reference
+### UI/UX
 
-### Job Listings (`Jobsections.php`)
+- 🎨 Clean, modern design with Tailwind CSS
+- 📱 Fully responsive (mobile-first)
+- 🌐 Intuitive navigation
+- ⚡ Fast page loads
 
-- Browse job listings from the database
-- **Skill Matching**: Jobs are sorted based on match with user's assessed skills
-- Search and filter functionality (keyword, location, job type)
-- **Job Application**: Apply directly through the platform with resume upload
-- **Job Bookmarking**: Save jobs for later viewing
-- **Job Posting**: Users with 'HR' or 'Admin' roles can post new job listings
+## 🚀 Quick Start
 
-## Technologies Used
+### Prerequisites
 
-- **Frontend**: HTML, CSS, JavaScript, Tailwind CSS
-- **Backend**: PHP, MySQL
-- **AI Integration**: Google Gemini API
-- **Hosting**: InfinityFree (or any PHP/MySQL compatible hosting)
+- PHP 7.4+
+- MySQL 5.7+
+- Apache/Nginx or XAMPP
+- Google Gemini API key (for AI features)
 
-## Live Demo
+### Installation
 
-🌐 **Live Site**: [Your InfinityFree URL here]
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/CareerCompass.git
 
-## Installation
+# Navigate to project directory
+cd CareerCompass
 
-### Option 1: Local Development (XAMPP)
+# Configure database in src/auth/config.php
+# Update with your database credentials
+```
 
-1. **Install XAMPP** from [apachefriends.org](https://www.apachefriends.org/download.html)
+### Local Development (XAMPP)
 
-2. **Clone the project** to `htdocs` folder:
+1. **Install XAMPP** from [apachefriends.org](https://www.apachefriends.org/)
+
+2. **Copy project** to `htdocs` folder:
 
    ```
    C:\xampp\htdocs\CareerCompass
@@ -61,12 +70,7 @@ CareerCompass is a comprehensive career development platform designed to help us
 
 3. **Start Apache and MySQL** in XAMPP Control Panel
 
-4. **Create database**:
-
-   - Open `http://localhost/phpmyadmin`
-   - Create database named `careercompass`
-
-5. **Configure database** in `src/auth/config.php`:
+4. **Configure database** in `src/auth/config.php`:
 
    ```php
    $servername = "localhost";
@@ -75,57 +79,119 @@ CareerCompass is a comprehensive career development platform designed to help us
    $dbname = "careercompass";
    ```
 
-6. **Access the app** at `http://localhost/CareerCompass/`
+5. **Access the app** at `http://localhost/CareerCompass/`
 
-### Option 2: InfinityFree Hosting
+### InfinityFree Hosting
 
-1. **Create account** at [infinityfree.com](https://www.infinityfree.com)
+1. Create account at [infinityfree.com](https://www.infinityfree.com)
+2. Create MySQL database in Control Panel
+3. Update `src/auth/config.php` with InfinityFree credentials
+4. Upload files via File Manager to `htdocs` folder
 
-2. **Create MySQL database** in Control Panel
+## 🛠️ Tech Stack
 
-3. **Update `src/auth/config.php`** with InfinityFree credentials:
+| Category | Technology                 |
+| -------- | -------------------------- |
+| Frontend | HTML5, CSS3, JavaScript    |
+| Styling  | Tailwind CSS, Font Awesome |
+| Backend  | PHP 7.4+                   |
+| Database | MySQL                      |
+| AI       | Google Gemini API          |
+| Hosting  | InfinityFree / XAMPP       |
 
-   ```php
-   $servername = "sqlXXX.infinityfree.com";
-   $username = "if0_XXXXXXXX";
-   $password = "your_password";
-   $dbname = "if0_XXXXXXXX_careercompass";
-   ```
-
-4. **Upload files** via File Manager to `htdocs` folder
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 CareerCompass/
 ├── src/
 │   ├── auth/
-│   │   ├── config.php      # Database configuration
-│   │   ├── login.php       # User login
-│   │   ├── logout.php      # User logout
-│   │   ├── profile.php     # User profile
-│   │   └── signup.php      # User registration
+│   │   ├── config.php              # Database configuration
+│   │   ├── login.php               # User login
+│   │   ├── logout.php              # Secure logout
+│   │   ├── signup.php              # User registration
+│   │   └── profile.php             # User profile
 │   └── main/
-│       ├── Home.php        # Career assessment
-│       ├── AiRoadmap.php   # Roadmap generator
-│       └── Jobsections.php # Job listings
-├── index.html              # Landing page
-└── index.php               # Main entry point
+│       ├── Home.php                # Career assessment
+│       ├── AiRoadmap.php           # AI roadmap generator
+│       ├── Jobsections.php         # Job listings
+│       └── configJob.php           # Job configuration
+├── index.html                      # Landing page
+├── index.php                       # Main entry point
+└── test_logout.php                 # Testing utility
 ```
 
-## API Configuration
+## 🔐 Security Features
 
-For AI features to work, add your Google Gemini API key in:
+- 🔒 Password hashing with `PASSWORD_DEFAULT`
+- 🛡️ SQL injection prevention (prepared statements)
+- 🍪 Secure session management with cookie cleanup
+- ✅ Auto session invalidation for deleted users
+- 🧹 XSS protection with output encoding
+
+## 👤 User Roles
+
+| Role  | Access                                       |
+| ----- | -------------------------------------------- |
+| User  | Browse jobs, apply, assessments, roadmaps    |
+| HR    | All user features + post/manage job listings |
+| Admin | Full platform access, user management        |
+
+## 🧪 Testing
+
+### Test Logout Functionality
+
+1. Access `test_logout.php` in your browser
+2. Log in with a valid user
+3. Click logout - verify redirect to login
+4. Test browser back button - should redirect to login
+
+### Test Auto-Logout on User Deletion
+
+1. Log in to the application
+2. Delete user from database:
+   ```sql
+   DELETE FROM users WHERE email = 'test@example.com';
+   ```
+3. Refresh any page - should auto-redirect to login
+
+## 🔧 API Configuration
+
+For AI features, add your Google Gemini API key in:
 
 - `src/main/Home.php`
 - `src/main/AiRoadmap.php`
 
 Get your API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
 
-## License
+## 📜 Scripts
+
+| Command                 | Description                  |
+| ----------------------- | ---------------------------- |
+| `php -S localhost:8000` | Start PHP development server |
+
+## 🐛 Troubleshooting
+
+| Issue                               | Solution                                          |
+| ----------------------------------- | ------------------------------------------------- |
+| Session not clearing                | Clear browser cookies, check PHP session settings |
+| User still logged in after deletion | Ensure all pages have database verification       |
+| AI features not working             | Verify Gemini API key is valid                    |
+| Database connection error           | Check credentials in `config.php`                 |
+
+## 📄 License
 
 MIT License
 
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
 ---
+
+Built with ❤️ for Career Development
 
 © 2025 CareerCompass. All rights reserved.
