@@ -1,11 +1,10 @@
 <?php
-// Database configuration
-// Use environment variables for Vercel deployment, fallback to localhost for local development
-$servername = getenv("DB_HOST") ?: "localhost";
-$username = getenv("DB_USER") ?: "root";
-$password = getenv("DB_PASSWORD") ?: "";
-$dbname = getenv("DB_NAME") ?: "careercompass";
-$dbport = getenv("DB_PORT") ?: "3306";
+// Database configuration for InfinityFree
+$servername = "sql100.infinityfree.com";
+$username = "if0_40564292";
+$password = "7UpQ1wuLUUSkT";  // Replace with your actual password from InfinityFree
+$dbname = "if0_40564292_careercompass";
+$dbport = "3306";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname, $dbport);
@@ -24,7 +23,7 @@ if ($servername === "localhost" || $servername === "127.0.0.1") {
         $createDbConn->query($sql);
         $createDbConn->close();
     }
-    
+
     // Select the database
     $conn->select_db($dbname);
 }
