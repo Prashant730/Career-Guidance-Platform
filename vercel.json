@@ -1,19 +1,22 @@
 {
   "version": 2,
-  "outputDirectory": ".",
   "functions": {
     "api/**/*.php": {
       "runtime": "vercel-php@0.7.1"
     }
   },
-  "rewrites": [
+  "routes": [
     {
-      "source": "/src/(.*)",
-      "destination": "/api/src/$1"
+      "src": "/src/(.*)",
+      "dest": "/api/src/$1"
     },
     {
-      "source": "/(.*)",
-      "destination": "/api/index.php"
+      "src": "/(.*\\.(css|js|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot))",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
     }
   ]
 }
