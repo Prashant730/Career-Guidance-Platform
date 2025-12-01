@@ -2,8 +2,22 @@
 // Start session for user authentication
 session_start();
 
-// Read the content of the index.html file (one level up from api directory)
-$html = file_get_contents('../index.html');
+// Read the content of the index.html file
+// Try multiple paths for different environments (local vs Vercel)
+$possiblePaths = [
+  __DIR__ . '/../index.html',           // Local development
+  '/var/task/user/index.html',          // Vercel serverless
+  dirname(__DIR__) . '/index.html',     // Alternative local path
+];
+
+$html = false;
+foreach ($possiblePaths as $path) {
+  if (file_exists($path)) {
+    $html = file_get_contents($path);
+    break;
+  }
+}
+
 if ($html === false) {
   die("Error: Unable to read index.html file");
 }
